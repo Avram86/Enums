@@ -5,7 +5,9 @@ namespace Enums
 {
     [Flags]
     public enum DayOfWeek
-    {                    /*B7 B6 B5 B4 B3 B2 B1 B0*/
+    {              
+        None=0,
+                         /*B7 B6 B5 B4 B3 B2 B1 B0*/
                           /*0  0  0  0  0  0  0  0*/
         Monday = 1,       /*0  0  0  0  0  0  0  1*/
         Tuesday=2,        /*0  0  0  0  0  0  1  0*/

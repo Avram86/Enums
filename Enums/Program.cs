@@ -6,19 +6,21 @@ namespace Enums
     {
         static void Main(string[] args)
         {
+            DayOfWeek workDay = DayOfWeekParse("Monday, Tuesday");
+
             DayOfWeek weekend = DayOfWeek.Saturday | DayOfWeek.Sunday;
 
-            DayOfWeek workDay = DayOfWeek.Monday |
-                                DayOfWeek.Tuesday | 
-                                DayOfWeek.Wednesday | 
-                                DayOfWeek.Thursday | 
-                                DayOfWeek.Friday;
+            //DayOfWeek workDay = DayOfWeek.Monday |
+            //                    DayOfWeek.Tuesday | 
+            //                    DayOfWeek.Wednesday | 
+            //                    DayOfWeek.Thursday | 
+            //                    DayOfWeek.Friday;
 
             Console.WriteLine(workDay);
 
-                            //intersectia lor           ==....
-            bool isMonday = (workDay & DayOfWeek.Monday) == DayOfWeek.Monday;
-            bool isTuesday = (workDay & DayOfWeek.Tuesday) == DayOfWeek.Tuesday;
+            //intersectia lor           ==....
+            bool isMonday = workDay.HasFlag(DayOfWeek.Monday);     // SAU    (workDay & DayOfWeek.Monday) == DayOfWeek.Monday;
+            bool isTuesday = workDay.HasFlag(DayOfWeek.Tuesday);    //(workDay & DayOfWeek.Tuesday) == DayOfWeek.Tuesday;
             bool isWednesday = (workDay & DayOfWeek.Wednesday) == DayOfWeek.Wednesday;
             bool isThursday = (workDay & DayOfWeek.Thursday) == DayOfWeek.Thursday;
             bool isFriday = (workDay & DayOfWeek.Friday) == DayOfWeek.Friday;
@@ -92,6 +94,25 @@ namespace Enums
                 return false;
             }
             
+        }
+
+        static DayOfWeek DayOfWeekParse(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return DayOfWeek.None;
+            }
+
+            if(Enum.TryParse(typeof(DayOfWeek), value, out object result))
+            {
+                return (DayOfWeek)result;
+            }
+            else
+            {
+                return DayOfWeek.None;
+            }
+
+            //return (DayOfWeek)Enum.Parse(typeof(DayOfWeek), value); 
         }
     }
 }
