@@ -6,6 +6,32 @@ namespace Enums
     {
         static void Main(string[] args)
         {
+            DayOfWeek weekend = DayOfWeek.Saturday | DayOfWeek.Sunday;
+
+            DayOfWeek workDay = DayOfWeek.Monday |
+                                DayOfWeek.Tuesday | 
+                                DayOfWeek.Wednesday | 
+                                DayOfWeek.Thursday | 
+                                DayOfWeek.Friday;
+
+            Console.WriteLine(workDay);
+
+                            //intersectia lor           ==....
+            bool isMonday = (workDay & DayOfWeek.Monday) == DayOfWeek.Monday;
+            bool isTuesday = (workDay & DayOfWeek.Tuesday) == DayOfWeek.Tuesday;
+            bool isWednesday = (workDay & DayOfWeek.Wednesday) == DayOfWeek.Wednesday;
+            bool isThursday = (workDay & DayOfWeek.Thursday) == DayOfWeek.Thursday;
+            bool isFriday = (workDay & DayOfWeek.Friday) == DayOfWeek.Friday;
+            bool isSaturday = (weekend & DayOfWeek.Saturday)==DayOfWeek.Saturday;
+            bool isSunday = (weekend & DayOfWeek.Sunday) == DayOfWeek.Sunday;
+
+            Console.WriteLine($"Is Monday={isMonday}");
+            Console.WriteLine($"Is Tuesday={isTuesday}");
+            Console.WriteLine($"Is Wednesday={isWednesday}");
+            Console.WriteLine($"Is Thursday={isThursday}");
+            Console.WriteLine($"Is Friday={isFriday}");
+            Console.WriteLine($"Is Saturday={isSaturday}");
+            Console.WriteLine($"Is Sunday={isSunday}");
 
             //DayOfWeek day = GetDayOfWeek(125);
             DayOfWeek day = (DayOfWeek)125;
@@ -53,6 +79,19 @@ namespace Enums
             {
                 throw new ArgumentException($"{day} does not represent a valid value of the {typeof(DayOfWeek)}");
             }
+        }
+
+        public static bool IsWeekend(DayOfWeek day)
+        {
+            if (day == DayOfWeek.Saturday || day == DayOfWeek.Sunday)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
     }
 }
